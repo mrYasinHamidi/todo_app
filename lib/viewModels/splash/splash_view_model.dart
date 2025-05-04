@@ -4,4 +4,7 @@ part 'splash_state.dart';
 
 class SplashViewModel extends Cubit<SplashState> {
   SplashViewModel() : super(SplashInitialState());
+  void checkLoginStatus(){
+
+  }
 }
