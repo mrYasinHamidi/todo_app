@@ -3,10 +3,10 @@ import 'package:todo_app/features/auth/data/repositories/auth_repository.dart';
 import 'package:todo_app/features/auth/data/services/auth_local_service.dart';
 import 'package:todo_app/features/auth/data/services/auth_remote_service.dart';
 import 'package:todo_app/viewModels/app/app_view_model.dart';
-import 'package:todo_app/viewModels/tasks/tasks_view_model.dart';
 import 'features/auth/view/viewModels/login/login_view_model.dart';
 import 'features/auth/view/viewModels/signup/signup_view_model.dart';
 import 'features/auth/view/viewModels/splash/splash_view_model.dart';
+import 'features/tasks/view/viewModels/tasks/tasks_view_model.dart';
 
 final getIt = GetIt.instance;
 
