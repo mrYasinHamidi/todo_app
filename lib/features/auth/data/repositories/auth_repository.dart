@@ -13,6 +13,13 @@ class AuthRepository extends BaseRepository {
     : _localService = localService,
       _remoteService = remoteService;
 
+  Future<Either<Failure, bool>> isLoggedIn() async {
+    return perform(() async {
+      final localUser = await _localService.getUser();
+      return localUser != null;
+    });
+  }
+
   Future<Either<Failure, AppUser>> signIn(String email, String password) async {
     return perform(() async {
       final remoteUser = await _remoteService.signIn(email, password);

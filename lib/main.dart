@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/injection.dart';
 import 'package:todo_app/router.dart';
-import 'package:todo_app/services/notification_service.dart';
+import 'package:todo_app/global/notification_service.dart';
 import 'package:todo_app/viewModels/app/app_view_model.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'firebase_options.dart';
