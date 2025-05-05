@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:toastification/toastification.dart';
 import 'package:todo_app/injection.dart';
 import 'package:todo_app/router.dart';
 import 'package:todo_app/global/notification_service.dart';
@@ -42,11 +43,13 @@ class _MyAppState extends State<MyApp> {
     return BlocBuilder<AppViewModel, AppState>(
       bloc: appViewModel,
       builder: (context, state) {
-        return MaterialApp.router(
-          routerConfig: AppRouter.router,
-          theme: appViewModel.appTheme.themeData,
-          supportedLocales: localization.supportedLocales,
-          localizationsDelegates: localization.localizationsDelegates,
+        return ToastificationWrapper(
+          child: MaterialApp.router(
+            routerConfig: AppRouter.router,
+            theme: appViewModel.appTheme.themeData,
+            supportedLocales: localization.supportedLocales,
+            localizationsDelegates: localization.localizationsDelegates,
+          ),
         );
       },
     );

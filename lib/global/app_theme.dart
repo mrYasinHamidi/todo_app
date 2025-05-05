@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/injection.dart';
+import 'package:todo_app/viewModels/app/app_view_model.dart';
 
 sealed class AppTheme {
-  abstract final Color primaryColor;
+  static AppTheme get() => getIt<AppViewModel>().appTheme;
 
-  late final ThemeData themeData = ThemeData(primaryColor: primaryColor);
+  abstract final Color primaryColor;
+  final String? fontFamily = null;
+
+  late final ThemeData themeData = ThemeData(primaryColor: primaryColor, fontFamily: fontFamily);
 }
 
 class DarkTheme extends AppTheme {

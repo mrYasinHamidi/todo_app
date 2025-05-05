@@ -6,6 +6,12 @@ mixin AppTranslate {
   static const String weakPasswordError = 'weakPasswordError';
   static const String emailAlreadyUsedError = 'emailAlreadyUsedError';
   static const String serverError = 'serverError';
+  static const String email = 'email';
+  static const String password = 'password';
+  static const String signUp = 'Signup';
+  static const String signIn = 'SignIn';
+  static const String signupSuggestion = 'signupSuggestion';
+  static const String emailFormatError = 'emailFormatError';
 
   static const Map<String, dynamic> EN = {
     title: 'Localization',
@@ -15,14 +21,26 @@ mixin AppTranslate {
     weakPasswordError: 'The password provided is too weak.',
     emailAlreadyUsedError: 'The account already exists for that email.',
     serverError: 'The account already exists for that email.',
+    email: 'Email',
+    password: 'Password',
+    signIn: 'Sign In',
+    signUp: 'Sign Up',
+    signupSuggestion: 'Or you can Sign Up , Click here',
+    emailFormatError: 'Email format is incorrect.',
   };
   static const Map<String, dynamic> FA = {
     title: 'ローカリゼーション',
     thisIs: 'これは%aパッケージ、バージョン%aです。',
     userNotFoundError: '',
     wrongPasswordError: '',
-    weakPasswordError: '',
+    weakPasswordError: 'The password provided is too weak.',
     emailAlreadyUsedError: '',
     serverError: 'The account already exists for that email.',
+    email: 'Email',
+    password: 'Password',
+    signIn: 'Sign In',
+    signUp: 'Sign Up',
+    signupSuggestion: 'Or you can Sign Up , Click here',
+    emailFormatError: 'Email format is incorrect.',
   };
 }

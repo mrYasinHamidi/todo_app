@@ -21,6 +21,9 @@ dependencies:
   dartz: ^0.10.1
   toastification: ^3.0.2
   flutter_localization: ^0.3.2
+  dropdown_button2: ^2.3.9
+  easy_debounce: ^2.0.3
+  gap: ^3.0.1
 
 dev_dependencies:
   flutter_test:

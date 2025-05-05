@@ -7,10 +7,10 @@ class AppToast {
       type: ToastificationType.success,
       style: ToastificationStyle.flat,
       autoCloseDuration: const Duration(seconds: 5),
-      title: Text(
-        "(isError ? 'errorMessage' : 'successMessage').tr",
-        style: const TextStyle(fontSize: 16),
-      ),
+      // title: Text(
+      //   "(isError ? 'errorMessage' : 'successMessage').tr",
+      //   style: const TextStyle(fontSize: 16),
+      // ),
       description: Text(message),
       alignment: Alignment.topRight,
       animationDuration: const Duration(milliseconds: 300),
