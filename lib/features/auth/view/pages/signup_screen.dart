@@ -35,7 +35,6 @@ class _SignupScreenState extends State<SignupScreen> {
     return BlocListener(
       bloc: viewModel,
       listener: _listener,
-      listenWhen: (_, state) => state is SignupFailState,
       child: Scaffold(
         body: Form(
           key: formKey,
@@ -119,8 +118,17 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void _listener(BuildContext context, SignupState state) {
-    if (state is SignupFailState) {
-      AppToast.show(state.errorMessage.getString(context), isError: true);
+
+    switch (state) {
+      case SignupFailState():
+        AppToast.show(state.errorMessage.getString(context), isError: true);
+        break;
+      case SignupSuccessState():
+        AppToast.show(AppTranslate.yourWelcome.getString(context));
+        Navigator.pushReplacementNamed(context, AppRouter.tasks);
+        break;
+      default:
+        break;
     }
   }
 

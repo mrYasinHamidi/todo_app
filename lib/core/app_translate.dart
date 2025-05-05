@@ -15,6 +15,7 @@ mixin AppTranslate {
   static const String signinSuggestion = 'signinSuggestion';
   static const String emailFormatError = 'emailFormatError';
   static const String passwordConfirm = 'passwordConfirm';
+  static const String yourWelcome = 'yourWelcome';
 
   static const Map<String, dynamic> EN = {
     title: 'Localization',
@@ -33,6 +34,7 @@ mixin AppTranslate {
     emailFormatError: 'Email format is incorrect.',
     passwordNotMatch: 'Password not match.',
     passwordConfirm: 'Confirm password',
+    yourWelcome: 'Your Welcome',
   };
   static const Map<String, dynamic> FA = {
     title: 'ローカリゼーション',
@@ -51,5 +53,6 @@ mixin AppTranslate {
     emailFormatError: 'Email format is incorrect.',
     passwordConfirm: 'Confirm password',
     passwordNotMatch: 'Password not match.',
+    yourWelcome: 'Your Welcome',
   };
 }

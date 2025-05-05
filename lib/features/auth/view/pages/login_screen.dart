@@ -32,7 +32,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocListener(
       bloc: viewModel,
       listener: _listener,
-      listenWhen: (_, state) => state is LoginFailState,
       child: Scaffold(
         body: Form(
           key: formKey,
@@ -87,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ItemButton(
-                      onTap: ()=>context.pushReplacementNamed(AppRouter.signup),
+                      onTap: () => context.pushReplacementNamed(AppRouter.signup),
                       color: Colors.transparent,
                       padding: EdgeInsets.all(4),
                       child: Text(
@@ -107,8 +106,16 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _listener(BuildContext context, LoginState state) {
-    if (state is LoginFailState) {
-      AppToast.show(state.errorMessage.getString(context), isError: true);
+    switch (state) {
+      case LoginFailState():
+        AppToast.show(state.errorMessage.getString(context), isError: true);
+        break;
+      case LoginSuccessState():
+        AppToast.show(AppTranslate.yourWelcome.getString(context));
+        Navigator.pushReplacementNamed(context, AppRouter.tasks);
+        break;
+      default:
+        break;
     }
   }
 

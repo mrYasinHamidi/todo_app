@@ -3,9 +3,12 @@ import 'package:todo_app/models/app_user.dart';
 
 class AuthLocalService {
   late final Box _box;
+  bool _initialized = false;
 
   Future<void> ensureInitialize() async {
+    if (_initialized) return;
     _box = await Hive.openBox('authBox');
+    _initialized = true;
   }
 
   Future<void> saveUser(AppUser user) async {

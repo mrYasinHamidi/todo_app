@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:toastification/toastification.dart';
 import 'package:todo_app/injection.dart';
+import 'package:todo_app/models/app_user.dart';
 import 'package:todo_app/router.dart';
 import 'package:todo_app/global/notification_service.dart';
 import 'package:todo_app/viewModels/app/app_view_model.dart';
@@ -15,6 +16,7 @@ final localization = FlutterLocalization.instance;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+  Hive.registerAdapter(AppUserAdapter());
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await NotificationService.init();
   await Injection.setup();
