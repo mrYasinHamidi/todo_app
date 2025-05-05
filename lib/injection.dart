@@ -12,7 +12,14 @@ import 'features/auth/view/viewModels/splash/splash_view_model.dart';
 final getIt = GetIt.instance;
 
 class Injection {
-  static void setup() {
+  static Future<void> setup() async {
+    //services
+    getIt.registerLazySingleton(() => AuthRemoteService());
+    getIt.registerLazySingleton(() => AuthLocalService());
+
+    //repositories
+    getIt.registerLazySingleton(() => AuthRepository(localService: getIt(), remoteService: getIt()));
+
     //view-models
     getIt.registerFactory(() => SplashViewModel(repository: getIt()));
     getIt.registerFactory(() => LoginViewModel());
@@ -20,15 +27,6 @@ class Injection {
     getIt.registerFactory(() => TasksViewModel());
     getIt.registerSingleton(AppViewModel());
 
-    //services
-    getIt.registerLazySingleton(() => AuthRemoteService());
-    getIt.registerLazySingletonAsync(() async {
-      final service = AuthLocalService();
-      await service.ensureInitialize();
-      return service;
-    });
-
-    //repositories
-    getIt.registerLazySingleton(() => AuthRepository(localService: getIt(), remoteService: getIt()));
+    await getIt<AuthLocalService>().ensureInitialize();
   }
 }
