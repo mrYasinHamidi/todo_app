@@ -1,9 +1,10 @@
+import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/adapters.dart';
 
 part 'app_task.g.dart';
 
 @HiveType(typeId: 2)
-class AppTask extends HiveObject {
+class AppTask extends HiveObject with EquatableMixin{
   @HiveField(0)
   final int id;
 
@@ -26,4 +27,21 @@ class AppTask extends HiveObject {
       isCompleted: false,
     );
   }
+
+  AppTask copyWith({
+    int? id,
+    String? description,
+    bool? isToday,
+    bool? isCompleted,
+  }) {
+    return AppTask(
+      id: id ?? this.id,
+      description: description ?? this.description,
+      isToday: isToday ?? this.isToday,
+      isCompleted: isCompleted ?? this.isCompleted,
+    );
+  }
+
+  @override
+  List<Object?> get props => [id];
 }
