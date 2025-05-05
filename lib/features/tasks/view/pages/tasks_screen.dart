@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_app/core/app_translate.dart';
+import 'package:todo_app/features/tasks/data/models/app_task.dart';
 import 'package:todo_app/features/tasks/view/pages/dialog/add_task_dialog.dart';
 import 'package:todo_app/features/tasks/view/pages/widgets/task_list_item.dart';
 import 'package:todo_app/features/tasks/view/viewModels/tasks/tasks_view_model.dart';
@@ -29,18 +30,11 @@ class _TasksScreenState extends State<TasksScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: _addTask),
+      floatingActionButton: FloatingActionButton(onPressed: _addTask, child: Icon(Icons.add)),
       appBar: AppBar(
         leading: Icon(Icons.person_3_outlined),
         title: Column(children: [Text('yasin@gmail.com')]),
-        actions: [
-          IconButton(
-            onPressed: () {
-
-            },
-            icon: Icon(Icons.login_outlined),
-          ),
-        ],
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.login_outlined))],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -87,7 +81,7 @@ class _TasksScreenState extends State<TasksScreen> {
                           return TaskListItem(
                             task: task,
                             onCompleteTap: () => viewModel.changeTaskStatus(task),
-                            onTap: () {},
+                            onTap: () => _addTask(task: viewModel.todayTasks[index]),
                           );
                         },
                       );
@@ -99,12 +93,15 @@ class _TasksScreenState extends State<TasksScreen> {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 31),
                   ),
                   ListView.builder(
-                    itemCount: state.tomorrow.length,
+                    itemCount: viewModel.tomorrowTasks.length,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder:
-                        (context, index) =>
-                            TaskListItem(task: state.tomorrow[index], onCompleteTap: () {}, onTap: () {}),
+                        (context, index) => TaskListItem(
+                          task: viewModel.tomorrowTasks[index],
+                          onCompleteTap: () {},
+                          onTap: () => _addTask(task: viewModel.tomorrowTasks[index]),
+                        ),
                   ),
                 ],
               ),
@@ -116,8 +113,8 @@ class _TasksScreenState extends State<TasksScreen> {
     );
   }
 
-  void _addTask() async {
-    await showModalBottomSheet(context: context, builder: (context) => AddTaskDialog());
+  void _addTask({AppTask? task}) async {
+    await showModalBottomSheet(context: context, builder: (context) => AddTaskDialog(task: task));
     viewModel.fetchTasks();
   }
 }

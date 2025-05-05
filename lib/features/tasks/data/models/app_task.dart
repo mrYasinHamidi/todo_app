@@ -42,13 +42,19 @@ class AppTask extends HiveObject with EquatableMixin {
   @override
   List<Object?> get props => [id];
 
-  AppTask copyWith({String? id, String? description, bool? isToday, bool? isCompleted, DateTime? finishTime}) {
+  AppTask copyWith({
+    String? id,
+    String? description,
+    bool? isToday,
+    bool? isCompleted,
+    DateTime? Function()? dueDate,
+  }) {
     return AppTask(
       id: id ?? this.id,
       description: description ?? this.description,
       isToday: isToday ?? this.isToday,
       isCompleted: isCompleted ?? this.isCompleted,
-      dueDate: finishTime ?? this.dueDate,
+      dueDate: dueDate == null ? this.dueDate : dueDate(),
     );
   }
 }

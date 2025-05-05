@@ -18,13 +18,16 @@ class AddTaskViewModel extends Cubit<AddTaskState> {
     emit(IsTodayState(isToday: isToday));
   }
 
-  void addTask(String name, TimeOfDay? finishTime) async {
+  void addTask(String name, TimeOfDay? finishTime, {AppTask? appTask}) async {
     DateTime? dueDate;
     if (finishTime != null) {
       final now = DateTime.now();
       dueDate = DateTime(now.year, now.month, now.day, finishTime.hour, finishTime.minute);
     }
-    final task = AppTask.create(description: name, isToday: isToday, finishTime: dueDate);
+    final task =
+        appTask != null
+            ? appTask.copyWith(description: name, isToday: isToday, dueDate: () => dueDate)
+            : AppTask.create(description: name, isToday: isToday, finishTime: dueDate);
     final result = await _repository.saveTask(task);
     result.fold((l) => emit(AddTaskFail(errorMessage: l.error)), (r) {
       if (dueDate != null) {

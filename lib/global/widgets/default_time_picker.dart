@@ -27,7 +27,7 @@ class DefaultTimePicker extends StatefulWidget {
 }
 
 class _DefaultTimePickerState extends State<DefaultTimePicker> {
-  final _textController = TextEditingController();
+  late final _textController = TextEditingController(text: widget.controller?.value?.format(context));
 
   @override
   void initState() {

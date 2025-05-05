@@ -26,6 +26,7 @@ mixin AppTranslate {
   static const String hideCompleted = 'hideCompleted';
   static const String showCompleted = 'showCompleted';
   static const String addTask = 'addTask';
+  static const String editTask = 'editTask';
   static const String task = 'task';
   static const String taskDescriptionError = 'taskNameError';
   static const String successMessage = 'successMessage';
@@ -42,6 +43,7 @@ mixin AppTranslate {
     password: 'Password',
     signIn: 'Sign In',
     signUp: 'Sign Up',
+    editTask: 'Edit Task',
     signupSuggestion: 'Or you can Sign Up , Click here',
     signinSuggestion: 'If you already hav an account click here',
     emailFormatError: 'Email format is incorrect.',
@@ -69,6 +71,7 @@ mixin AppTranslate {
     wrongPasswordError: '',
     weakPasswordError: 'The password provided is too weak.',
     emailAlreadyUsedError: '',
+    editTask: 'Edit Task',
     serverError: 'The account already exists for that email.',
     email: 'Email',
     password: 'Password',

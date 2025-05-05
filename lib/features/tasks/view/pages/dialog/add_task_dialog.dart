@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo_app/core/app_toast.dart';
 import 'package:todo_app/core/app_translate.dart';
+import 'package:todo_app/features/tasks/data/models/app_task.dart';
 import 'package:todo_app/features/tasks/view/viewModels/addTask/add_task_view_model.dart';
 import 'package:todo_app/global/widgets/default_text_field.dart';
 import 'package:todo_app/global/widgets/default_time_picker.dart';
@@ -12,18 +13,33 @@ import 'package:todo_app/global/widgets/item_button.dart';
 import 'package:todo_app/injection.dart';
 
 class AddTaskDialog extends StatefulWidget {
-  const AddTaskDialog({super.key});
+  final AppTask? task;
+
+  const AddTaskDialog({super.key, this.task});
 
   @override
   State<AddTaskDialog> createState() => _AddTaskDialogState();
 }
 
 class _AddTaskDialogState extends State<AddTaskDialog> {
-  final timeController = DefaultTimePickerController();
-  final descriptionController = TextEditingController();
+  late final timeController = DefaultTimePickerController(
+    date:
+        widget.task?.dueDate == null
+            ? null
+            : TimeOfDay(hour: widget.task!.dueDate!.hour, minute: widget.task!.dueDate!.hour),
+  );
+  late final descriptionController = TextEditingController(text: widget.task?.description);
   final viewModel = getIt<AddTaskViewModel>();
 
   final formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    if (widget.task?.isToday != viewModel.isToday) {
+      viewModel.changeIsToday();
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +74,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      AppTranslate.addTask.getString(context),
+                      widget.task==null?AppTranslate.addTask.getString(context):AppTranslate.editTask.getString(context),
                       style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.start,
                     ),
@@ -114,7 +130,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
 
   void _submit() {
     if (formKey.currentState?.validate() == true) {
-      viewModel.addTask(descriptionController.text, timeController.value);
+      viewModel.addTask(descriptionController.text, timeController.value, appTask: widget.task);
     }
   }
 
