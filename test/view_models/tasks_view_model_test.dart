@@ -14,8 +14,8 @@ void main() {
   late MockTaskRepository mockRepository;
   late TasksViewModel tasksViewModel;
 
-  final task1 = AppTask(id: 1, description: 'Task 1', isToday: true, isCompleted: false);
-  final task2 = AppTask(id: 2, description: 'Task 2', isToday: true, isCompleted: true);
+  final task1 = AppTask(id: '1', description: 'Task 1', isToday: true, isCompleted: false);
+  final task2 = AppTask(id: '2', description: 'Task 2', isToday: true, isCompleted: true);
 
   setUp(() {
     mockRepository = MockTaskRepository();

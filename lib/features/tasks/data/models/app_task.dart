@@ -1,12 +1,13 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 
 part 'app_task.g.dart';
 
 @HiveType(typeId: 2)
-class AppTask extends HiveObject with EquatableMixin{
+class AppTask extends HiveObject with EquatableMixin {
   @HiveField(0)
-  final int id;
+  final String id;
 
   @HiveField(1)
   final String description;
@@ -17,31 +18,37 @@ class AppTask extends HiveObject with EquatableMixin{
   @HiveField(3)
   final bool isCompleted;
 
-  AppTask({required this.id, required this.description, required this.isToday, required this.isCompleted});
+  @HiveField(4)
+  final DateTime? dueDate;
 
-  factory AppTask.create({required String description, required bool isToday}) {
+  AppTask({
+    required this.id,
+    required this.description,
+    required this.isToday,
+    required this.isCompleted,
+    this.dueDate,
+  });
+
+  factory AppTask.create({required String description, required bool isToday, DateTime? finishTime}) {
     return AppTask(
-      id: DateTime.now().millisecondsSinceEpoch,
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
       description: description,
+      dueDate: finishTime,
       isToday: isToday,
       isCompleted: false,
     );
   }
 
-  AppTask copyWith({
-    int? id,
-    String? description,
-    bool? isToday,
-    bool? isCompleted,
-  }) {
+  @override
+  List<Object?> get props => [id];
+
+  AppTask copyWith({String? id, String? description, bool? isToday, bool? isCompleted, DateTime? finishTime}) {
     return AppTask(
       id: id ?? this.id,
       description: description ?? this.description,
       isToday: isToday ?? this.isToday,
       isCompleted: isCompleted ?? this.isCompleted,
+      dueDate: finishTime ?? this.dueDate,
     );
   }
-
-  @override
-  List<Object?> get props => [id];
 }

@@ -21,9 +21,12 @@ mixin AppTranslate {
   static const String done = 'done';
   static const String addTaskBottomMessage = 'addTaskBottomMessage';
   static const String name = 'name';
-  static const String hour = 'hour';
+  static const String taskDescription = 'taskDescription';
+  static const String dueDateHint = 'hourHint';
   static const String addTask = 'addTask';
   static const String task = 'task';
+  static const String taskDescriptionError = 'taskNameError';
+  static const String successMessage = 'successMessage';
 
   static const Map<String, dynamic> EN = {
     title: 'Localization',
@@ -50,7 +53,10 @@ mixin AppTranslate {
     addTask: 'Add a Task',
     task: 'Task',
     done: 'Done',
-    hour: 'Hour',
+    dueDateHint: 'Due Date (Optional)',
+    taskDescriptionError: 'Please write some description for your Task.',
+    taskDescription: 'Task Description',
+    successMessage: 'Operation successfully done.',
   };
   static const Map<String, dynamic> FA = {
     title: 'ローカリゼーション',
@@ -71,12 +77,15 @@ mixin AppTranslate {
     passwordNotMatch: 'Password not match.',
     yourWelcome: 'Your Welcome',
     today: 'Today',
-    hour: 'Hour',
+    dueDateHint: 'Due Date (Optional)',
     tomorrow: 'Tomorrow',
     addTaskBottomMessage: 'If you disable today, the task will be considered as tomorrow',
     done: 'Done',
+    taskDescription: 'Task Description',
     name: 'Name',
     addTask: 'Add a Task',
+    taskDescriptionError: 'Please write some description for your Task.',
+    successMessage: 'Operation successfully done.',
     task: 'Task',
   };
 }

@@ -17,17 +17,18 @@ class AppTaskAdapter extends TypeAdapter<AppTask> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return AppTask(
-      id: fields[0] as int,
+      id: fields[0] as String,
       description: fields[1] as String,
       isToday: fields[2] as bool,
       isCompleted: fields[3] as bool,
+      dueDate: fields[4] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, AppTask obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class AppTaskAdapter extends TypeAdapter<AppTask> {
       ..writeByte(2)
       ..write(obj.isToday)
       ..writeByte(3)
-      ..write(obj.isCompleted);
+      ..write(obj.isCompleted)
+      ..writeByte(4)
+      ..write(obj.dueDate);
   }
 
   @override
