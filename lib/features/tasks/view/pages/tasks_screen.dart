@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/features/tasks/view/pages/dialog/add_task_dialog.dart';
 
 class TasksScreen extends StatefulWidget {
   const TasksScreen({super.key});
@@ -10,6 +11,10 @@ class TasksScreen extends StatefulWidget {
 class _TasksScreenState extends State<TasksScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(floatingActionButton: FloatingActionButton(onPressed: _addTask));
+  }
+
+  void _addTask() {
+    showModalBottomSheet(context: context, builder: (context) => AddTaskDialog());
   }
 }

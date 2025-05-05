@@ -16,6 +16,14 @@ mixin AppTranslate {
   static const String emailFormatError = 'emailFormatError';
   static const String passwordConfirm = 'passwordConfirm';
   static const String yourWelcome = 'yourWelcome';
+  static const String today = 'today';
+  static const String tomorrow = 'tomorrow';
+  static const String done = 'done';
+  static const String addTaskBottomMessage = 'addTaskBottomMessage';
+  static const String name = 'name';
+  static const String hour = 'hour';
+  static const String addTask = 'addTask';
+  static const String task = 'task';
 
   static const Map<String, dynamic> EN = {
     title: 'Localization',
@@ -35,6 +43,14 @@ mixin AppTranslate {
     passwordNotMatch: 'Password not match.',
     passwordConfirm: 'Confirm password',
     yourWelcome: 'Your Welcome',
+    today: 'Today',
+    tomorrow: 'Tomorrow',
+    addTaskBottomMessage: 'If you disable today, the task will be considered as tomorrow',
+    name: 'Name',
+    addTask: 'Add a Task',
+    task: 'Task',
+    done: 'Done',
+    hour: 'Hour',
   };
   static const Map<String, dynamic> FA = {
     title: 'ローカリゼーション',
@@ -54,5 +70,13 @@ mixin AppTranslate {
     passwordConfirm: 'Confirm password',
     passwordNotMatch: 'Password not match.',
     yourWelcome: 'Your Welcome',
+    today: 'Today',
+    hour: 'Hour',
+    tomorrow: 'Tomorrow',
+    addTaskBottomMessage: 'If you disable today, the task will be considered as tomorrow',
+    done: 'Done',
+    name: 'Name',
+    addTask: 'Add a Task',
+    task: 'Task',
   };
 }
