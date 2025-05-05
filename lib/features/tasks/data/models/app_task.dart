@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 
 part 'app_task.g.dart';
