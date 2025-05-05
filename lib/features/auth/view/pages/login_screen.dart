@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo_app/core/app_toast.dart';
 import 'package:todo_app/core/app_translate.dart';
@@ -12,6 +11,7 @@ import 'package:todo_app/global/widgets/default_loading.dart';
 import 'package:todo_app/global/widgets/default_text_field.dart';
 import 'package:todo_app/global/widgets/item_button.dart';
 import 'package:todo_app/injection.dart';
+import 'package:todo_app/router.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -87,6 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ItemButton(
+                      onTap: ()=>context.pushReplacementNamed(AppRouter.signup),
                       color: Colors.transparent,
                       padding: EdgeInsets.all(4),
                       child: Text(
