@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/features/tasks/data/models/app_task.dart';
 import 'package:todo_app/features/tasks/data/repositories/tasks_repository.dart';
+import 'package:todo_app/global/notification_service.dart';
 
 part 'add_task_state.dart';
 
@@ -26,6 +27,14 @@ class AddTaskViewModel extends Cubit<AddTaskState> {
     final task = AppTask.create(description: name, isToday: isToday, finishTime: dueDate);
     final result = await _repository.saveTask(task);
     result.fold((l) => emit(AddTaskFail(errorMessage: l.error)), (r) {
+      if (dueDate != null) {
+        NotificationService.scheduleNotification(
+          id: int.parse(task.id.replaceRange(0, 6, '')),
+          title: 'Time to done your task!!!',
+          body: task.description,
+          scheduledDate: dueDate,
+        );
+      }
       emit(AddTaskSuccess(task: r));
     });
   }

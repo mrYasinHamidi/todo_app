@@ -9,24 +9,30 @@ class TasksViewModel extends Cubit<TasksState> {
 
   TasksViewModel({required TaskRepository repository}) : _repository = repository, super(const TasksInitialState());
 
-  bool _showCompleted = true;
-  List<AppTask> _tasks = [];
+  bool showCompleted = true;
+  List<AppTask> todayTasks = [];
+  List<AppTask> tomorrowTasks = [];
 
   void fetchTasks() {
     final result = _repository.getTasks();
-    result.fold((l) => emit(TasksErrorState(errorMessage: l.error)), (r) {
-      _tasks = r;
-      if (_tasks.isEmpty) {
+    result.fold((l) => emit(TasksErrorState(errorMessage: l.error)), (tasks) {
+      if (tasks.isEmpty) {
         emit(TasksEmptyState());
       } else {
-        if (_showCompleted) {
-          emit(TasksListState(tasks: _tasks));
+        if (showCompleted) {
+          final separatedByDay = tasks.separateTasks();
+          todayTasks = separatedByDay.$1;
+          tomorrowTasks = separatedByDay.$2;
+          emit(TasksListState(today: todayTasks, tomorrow: tomorrowTasks));
         } else {
-          _tasks = _tasks.where((element) => !element.isCompleted).toList();
-          if (_tasks.isEmpty) {
+          final notCompleted = tasks.where((element) => !element.isCompleted).toList();
+          if (notCompleted.isEmpty) {
             emit(AllTasksDoneState());
           } else {
-            emit(TasksListState(tasks: _tasks));
+            final separatedByDay = notCompleted.separateTasks();
+            todayTasks = separatedByDay.$1;
+            tomorrowTasks = separatedByDay.$2;
+            emit(TasksListState(today: todayTasks, tomorrow: tomorrowTasks));
           }
         }
       }
@@ -36,12 +42,18 @@ class TasksViewModel extends Cubit<TasksState> {
   void changeTaskStatus(AppTask task) async {
     final result = await _repository.saveTask(task.copyWith(isCompleted: !task.isCompleted));
     result.fold((l) => emit(TasksErrorState(errorMessage: l.error)), (r) {
-      emit(TaskStatusState(task: r));
+      final index = todayTasks.indexOf(task);
+      if (index != -1) {
+        todayTasks.removeAt(index);
+        todayTasks.insert(index, r);
+        emit(TaskStatusState(task: r));
+      }
     });
   }
 
   void toggleCompletedTasksVisibility() {
-    _showCompleted = !_showCompleted;
-    emit(TasksVisibilityState(showCompleted: _showCompleted));
+    showCompleted = !showCompleted;
+    emit(TasksVisibilityState(showCompleted: showCompleted));
+    fetchTasks();
   }
 }

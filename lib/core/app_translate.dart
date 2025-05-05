@@ -23,6 +23,8 @@ mixin AppTranslate {
   static const String name = 'name';
   static const String taskDescription = 'taskDescription';
   static const String dueDateHint = 'hourHint';
+  static const String hideCompleted = 'hideCompleted';
+  static const String showCompleted = 'showCompleted';
   static const String addTask = 'addTask';
   static const String task = 'task';
   static const String taskDescriptionError = 'taskNameError';
@@ -56,6 +58,8 @@ mixin AppTranslate {
     dueDateHint: 'Due Date (Optional)',
     taskDescriptionError: 'Please write some description for your Task.',
     taskDescription: 'Task Description',
+    hideCompleted: 'Hide Completed',
+    showCompleted: 'Show Completed',
     successMessage: 'Operation successfully done.',
   };
   static const Map<String, dynamic> FA = {
@@ -81,6 +85,8 @@ mixin AppTranslate {
     tomorrow: 'Tomorrow',
     addTaskBottomMessage: 'If you disable today, the task will be considered as tomorrow',
     done: 'Done',
+    hideCompleted: 'Hide Completed',
+    showCompleted: 'Show Completed',
     taskDescription: 'Task Description',
     name: 'Name',
     addTask: 'Add a Task',

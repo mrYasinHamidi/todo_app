@@ -52,3 +52,18 @@ class AppTask extends HiveObject with EquatableMixin {
     );
   }
 }
+
+extension TaskListX on List<AppTask> {
+  (List<AppTask> today, List<AppTask> tomorrow) separateTasks() {
+    final todayTasks = <AppTask>[];
+    final tomorrowTasks = <AppTask>[];
+    for (AppTask task in this) {
+      if (task.isToday) {
+        todayTasks.add(task);
+      } else {
+        tomorrowTasks.add(task);
+      }
+    }
+    return (todayTasks, tomorrowTasks);
+  }
+}

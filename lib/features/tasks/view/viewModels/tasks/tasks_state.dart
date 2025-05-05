@@ -9,9 +9,10 @@ class TasksInitialState extends TasksState {
 }
 
 class TasksListState extends TasksState {
-  final List<AppTask> tasks;
+  final List<AppTask> today;
+  final List<AppTask> tomorrow;
 
-  TasksListState({required this.tasks});
+  TasksListState({required this.tomorrow, required this.today});
 }
 
 class TasksEmptyState extends TasksState {}
