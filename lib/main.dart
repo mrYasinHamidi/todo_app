@@ -10,7 +10,6 @@ import 'firebase_options.dart';
 
 final localization = FlutterLocalization.instance;
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -20,13 +19,24 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final appViewModel = getIt<AppViewModel>();
+  State<MyApp> createState() => _MyAppState();
+}
 
+class _MyAppState extends State<MyApp> {
+  final appViewModel = getIt<AppViewModel>();
+
+  @override
+  void initState() {
+    appViewModel.initializeTranslation();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return BlocBuilder<AppViewModel, AppState>(
       bloc: appViewModel,
       builder: (context, state) {

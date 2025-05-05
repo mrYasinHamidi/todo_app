@@ -20,11 +20,15 @@ class AppViewModel extends Cubit<AppState> {
       initLanguageCode: 'en',
     );
 
-    FlutterLocalization.instance.onTranslatedLanguage = changeLanguage;
+    FlutterLocalization.instance.onTranslatedLanguage = _changeLanguage;
   }
 
-  void changeLanguage(Locale? locale) {
+  void _changeLanguage(Locale? locale) {
     emit(AppLangState());
+  }
+
+  void changeLang() {
+    print(localization.currentLocale);
   }
 
   void changeTheme() {
