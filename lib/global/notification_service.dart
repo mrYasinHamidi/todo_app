@@ -1,6 +1,7 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:todo_app/features/tasks/data/models/app_task.dart';
 
 class NotificationService {
   static final FlutterLocalNotificationsPlugin _notificationsPlugin = FlutterLocalNotificationsPlugin();
@@ -19,34 +20,24 @@ class NotificationService {
     tz.initializeTimeZones();
   }
 
-  static Future<void> cancel(int id) => _notificationsPlugin.cancel(id);
+  static Future<void> cancel(AppTask task) => _notificationsPlugin.cancel(task.getNotificationId());
 
-  static Future<void> scheduleNotification({
-    required int id,
-    required String title,
-    required String body,
-    required DateTime scheduledDate,
-  }) async {
-    await _notificationsPlugin
-        .zonedSchedule(
-      id,
-      title,
-      body,
-      tz.TZDateTime.from(scheduledDate, tz.local),
-      const NotificationDetails(
-        android: AndroidNotificationDetails(
-          'todo_channel',
-          'Task Reminders',
-          importance: Importance.max,
-          priority: Priority.high,
-        ),
-      ),
-      androidScheduleMode: AndroidScheduleMode.alarmClock,
-    )
-        .then((value) {
-      print('value');
-    }).onError((error, stackTrace) {
-      print(error);
-    });
-  }
+  static Future<void> scheduleNotification(AppTask task) =>
+      task.dueDate == null
+          ? Future.value()
+          : _notificationsPlugin.zonedSchedule(
+            task.getNotificationId(),
+            'Time to done your Task',
+            task.description,
+            tz.TZDateTime.from(task.dueDate!, tz.local),
+            const NotificationDetails(
+              android: AndroidNotificationDetails(
+                'todo_channel',
+                'Task Reminders',
+                importance: Importance.max,
+                priority: Priority.high,
+              ),
+            ),
+            androidScheduleMode: AndroidScheduleMode.alarmClock,
+          );
 }

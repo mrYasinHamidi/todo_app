@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.yasin.todo_app"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 35
     ndkVersion  = "27.0.12077973"
     defaultConfig {
         multiDexEnabled = true

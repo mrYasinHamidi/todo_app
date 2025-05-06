@@ -112,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
         break;
       case LoginSuccessState():
         AppToast.show(AppTranslate.yourWelcome.getString(context));
-        Navigator.pushReplacementNamed(context, AppRouter.tasks);
+        context.pushReplacementNamed(AppRouter.tasks);
         break;
       default:
         break;
