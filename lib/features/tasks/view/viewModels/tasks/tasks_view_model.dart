@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/features/tasks/data/models/app_task.dart';
 import 'package:todo_app/features/tasks/data/repositories/tasks_repository.dart';
 import 'package:todo_app/global/notification_service.dart';
+import 'package:todo_app/models/app_user.dart';
 
 part 'tasks_state.dart';
 
@@ -13,6 +14,16 @@ class TasksViewModel extends Cubit<TasksState> {
   bool showCompleted = true;
   List<AppTask> todayTasks = [];
   List<AppTask> tomorrowTasks = [];
+  AppUser? user;
+
+  void loadUser() {
+    final result = _repository.getUser();
+    result.fold((l) => emit(TasksErrorState(errorMessage: l.error)), (r) {
+      user = r;
+      emit(TasksUserState(user: user));
+
+    });
+  }
 
   void fetchTasks() {
     final result = _repository.getTasks();

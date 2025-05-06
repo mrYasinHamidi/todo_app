@@ -13,11 +13,15 @@ class AuthRepository extends BaseRepository {
     : _localService = localService,
       _remoteService = remoteService;
 
-  Future<Either<Failure, bool>> isLoggedIn() async {
-    return perform(() async {
-      final localUser = await _localService.getUser();
+  Either<Failure, bool> isLoggedIn() {
+    return performSync(() {
+      final localUser = _localService.getUser();
       return localUser != null;
     });
+  }
+
+  Either<Failure, AppUser?> getUser() {
+    return performSync(() => _localService.getUser());
   }
 
   Future<Either<Failure, AppUser>> signIn(String email, String password) async {

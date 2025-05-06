@@ -40,3 +40,9 @@ class TaskDeletedState extends TasksState {
 
   TaskDeletedState({required this.task});
 }
+
+class TasksUserState extends TasksState {
+  final AppUser? user;
+
+  TasksUserState({required this.user});
+}

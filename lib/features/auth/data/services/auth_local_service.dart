@@ -15,8 +15,8 @@ class AuthLocalService {
     await _box.put('current', user);
   }
 
-  Future<AppUser?> getUser() async {
-    return await _box.get('current');
+  AppUser? getUser() {
+    return _box.get('current');
   }
 
   Future<void> clear() => _box.clear();

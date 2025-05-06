@@ -25,6 +25,7 @@ class _TasksScreenState extends State<TasksScreen> {
 
   @override
   void initState() {
+    viewModel.loadUser();
     viewModel.fetchTasks();
     _requestPermissions();
     super.initState();
@@ -39,7 +40,13 @@ class _TasksScreenState extends State<TasksScreen> {
         floatingActionButton: FloatingActionButton(onPressed: _addTask, child: Icon(Icons.add)),
         appBar: AppBar(
           leading: Icon(Icons.person_3_outlined),
-          title: Column(children: [Text('yasin@gmail.com')]),
+          title: BlocBuilder(
+            bloc: viewModel,
+            buildWhen: (_, state) => state is TasksUserState,
+            builder: (_, state) {
+              return Text(viewModel.user?.email ?? AppTranslate.task.getString(context));
+            },
+          ),
           actions: [IconButton(onPressed: () {}, icon: Icon(Icons.login_outlined))],
         ),
         body: Padding(
