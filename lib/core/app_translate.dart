@@ -1,6 +1,6 @@
 mixin AppTranslate {
-  static const String title = 'title';
-  static const String thisIs = 'thisIs';
+  static const String yes = 'Yes';
+  static const String no = 'no';
   static const String userNotFoundError = 'userNotFoundError';
   static const String wrongPasswordError = 'wrongPasswordError';
   static const String weakPasswordError = 'weakPasswordError';
@@ -30,10 +30,12 @@ mixin AppTranslate {
   static const String task = 'task';
   static const String taskDescriptionError = 'taskNameError';
   static const String successMessage = 'successMessage';
+  static const String deleteTask = 'deleteTask';
+  static const String deleteTaskMessage = 'deleteTaskMessage';
 
   static const Map<String, dynamic> EN = {
-    title: 'Localization',
-    thisIs: 'This is %a package, version %a.',
+    yes: 'Yes',
+    no: 'No',
     userNotFoundError: 'No user found for that email.',
     wrongPasswordError: 'Wrong password provided for that user.',
     weakPasswordError: 'The password provided is too weak.',
@@ -63,10 +65,12 @@ mixin AppTranslate {
     hideCompleted: 'Hide Completed',
     showCompleted: 'Show Completed',
     successMessage: 'Operation successfully done.',
+    deleteTask: 'Delete Task',
+    deleteTaskMessage: 'Are you sure that you want to delete this Task?',
   };
   static const Map<String, dynamic> FA = {
-    title: 'ローカリゼーション',
-    thisIs: 'これは%aパッケージ、バージョン%aです。',
+    no: 'No',
+    yes: 'Yes',
     userNotFoundError: '',
     wrongPasswordError: '',
     weakPasswordError: 'The password provided is too weak.',
@@ -96,5 +100,7 @@ mixin AppTranslate {
     taskDescriptionError: 'Please write some description for your Task.',
     successMessage: 'Operation successfully done.',
     task: 'Task',
+    deleteTask: 'Delete Task',
+    deleteTaskMessage: 'Are you sure that you want to delete this Task?',
   };
 }

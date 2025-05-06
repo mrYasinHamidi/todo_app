@@ -19,5 +19,9 @@ class TasksLocalService {
     return _box.values.toList().cast();
   }
 
+  Future<void> deleteTask(AppTask task) {
+    return _box.delete(task.key);
+  }
+
   Future<void> clear() => _box.clear();
 }

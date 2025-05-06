@@ -21,4 +21,10 @@ class TaskRepository extends BaseRepository {
       return _localService.getTasks();
     });
   }
+
+  Future<Either<Failure, void>> deleteTask(AppTask task) {
+    return perform(() {
+      return _localService.deleteTask(task);
+    });
+  }
 }

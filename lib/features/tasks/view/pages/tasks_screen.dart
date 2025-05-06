@@ -9,6 +9,7 @@ import 'package:todo_app/features/tasks/data/models/app_task.dart';
 import 'package:todo_app/features/tasks/view/pages/dialog/add_task_dialog.dart';
 import 'package:todo_app/features/tasks/view/pages/widgets/task_list_item.dart';
 import 'package:todo_app/features/tasks/view/viewModels/tasks/tasks_view_model.dart';
+import 'package:todo_app/global/widgets/default_question_dialog.dart';
 import 'package:todo_app/global/widgets/item_button.dart';
 import 'package:todo_app/injection.dart';
 
@@ -98,6 +99,7 @@ class _TasksScreenState extends State<TasksScreen> {
                           builder: (_, state) {
                             final task = viewModel.todayTasks[index];
                             return TaskListItem(
+                              onDelete: () => _deleteTask(viewModel.todayTasks[index]),
                               task: task,
                               onCompleteTap: () => viewModel.changeTaskStatus(task),
                               onTap: () => _addTask(task: viewModel.todayTasks[index]),
@@ -132,6 +134,7 @@ class _TasksScreenState extends State<TasksScreen> {
                           (context, index) => TaskListItem(
                             task: viewModel.tomorrowTasks[index],
                             onCompleteTap: () {},
+                            onDelete: () => _deleteTask(viewModel.tomorrowTasks[index]),
                             onTap: () => _addTask(task: viewModel.tomorrowTasks[index]),
                           ),
                     ),
@@ -148,7 +151,12 @@ class _TasksScreenState extends State<TasksScreen> {
   }
 
   void _addTask({AppTask? task}) async {
-    await showModalBottomSheet(context: context,enableDrag: true,isScrollControlled: true, builder: (context) => AddTaskDialog(task: task));
+    await showModalBottomSheet(
+      context: context,
+      enableDrag: true,
+      isScrollControlled: true,
+      builder: (context) => AddTaskDialog(task: task),
+    );
     viewModel.fetchTasks();
   }
 
@@ -164,8 +172,23 @@ class _TasksScreenState extends State<TasksScreen> {
       case TasksVisibilityState():
         viewModel.fetchTasks();
         break;
+      case TaskDeletedState():
+        viewModel.checkScheduledNotification(state.task, isDeleted: true);
+        viewModel.fetchTasks();
+        break;
       default:
         break;
     }
+  }
+
+  void _deleteTask(AppTask task) {
+    DefaultQuestionDialog(
+      title: AppTranslate.deleteTask.getString(context),
+      desc: AppTranslate.deleteTaskMessage.getString(context),
+    ).open(context).then((value) {
+      if (value == true) {
+        viewModel.deleteTask(task);
+      }
+    });
   }
 }

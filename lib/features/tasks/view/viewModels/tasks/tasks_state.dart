@@ -34,3 +34,9 @@ class TaskStatusState extends TasksState {
 
   TaskStatusState({required this.task});
 }
+
+class TaskDeletedState extends TasksState {
+  final AppTask task;
+
+  TaskDeletedState({required this.task});
+}

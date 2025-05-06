@@ -54,11 +54,16 @@ class TasksViewModel extends Cubit<TasksState> {
     emit(TasksVisibilityState(showCompleted: showCompleted));
   }
 
-  void checkScheduledNotification(AppTask task) async {
-    if (task.isCompleted) {
+  void checkScheduledNotification(AppTask task, {bool isDeleted = false}) async {
+    if (isDeleted || task.isCompleted) {
       await NotificationService.cancel(task);
     } else if (task.isToday) {
       await NotificationService.scheduleNotification(task);
     }
+  }
+
+  void deleteTask(AppTask task) async {
+    final result = await _repository.deleteTask(task);
+    result.fold((l) => TasksErrorState(errorMessage: l.error), (r) => emit(TaskDeletedState(task: task)));
   }
 }

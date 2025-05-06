@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
       bloc: viewModel,
       listener: _listener,
       child: Scaffold(
-        appBar: AppBar(title: Text(AppTranslate.title.getString(context))),
+        appBar: AppBar(title: Text(AppTranslate.showCompleted.getString(context))),
         body: BlocBuilder(
           bloc: viewModel,
           builder: (context, state) {
