@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo_app/core/app_translate.dart';
-import 'package:todo_app/global/app_theme.dart';
+import 'package:todo_app/features/common/app_theme.dart';
 
 import 'item_button.dart';
 

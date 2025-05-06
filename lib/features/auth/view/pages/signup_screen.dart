@@ -5,13 +5,13 @@ import 'package:go_router/go_router.dart';
 import 'package:todo_app/core/app_toast.dart';
 import 'package:todo_app/core/app_translate.dart';
 import 'package:todo_app/features/auth/view/viewModels/signup/signup_view_model.dart';
-import 'package:todo_app/global/app_theme.dart';
-import 'package:todo_app/global/extensions/string_ext.dart';
-import 'package:todo_app/global/widgets/default_loading.dart';
-import 'package:todo_app/global/widgets/default_text_field.dart';
-import 'package:todo_app/global/widgets/item_button.dart';
-import 'package:todo_app/injection.dart';
-import 'package:todo_app/router.dart';
+import 'package:todo_app/features/common/app_theme.dart';
+import 'package:todo_app/features/common/extensions/string_ext.dart';
+import 'package:todo_app/features/common/widgets/default_loading.dart';
+import 'package:todo_app/features/common/widgets/default_text_field.dart';
+import 'package:todo_app/features/common/widgets/item_button.dart';
+import 'package:todo_app/core/injection.dart';
+import 'package:todo_app/core/router.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});

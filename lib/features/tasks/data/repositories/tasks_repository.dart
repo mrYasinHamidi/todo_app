@@ -4,7 +4,7 @@ import 'package:todo_app/core/repository/base_repository.dart';
 import 'package:todo_app/features/tasks/data/models/app_task.dart';
 import 'package:todo_app/features/tasks/data/services/tasks_local_service.dart';
 import 'package:todo_app/features/tasks/task_mapper.dart';
-import 'package:todo_app/models/app_user.dart';
+import 'package:todo_app/features/common/models/app_user.dart';
 
 class TaskRepository extends BaseRepository {
   final TasksLocalService _localService;

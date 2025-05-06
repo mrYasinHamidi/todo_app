@@ -7,11 +7,11 @@ import 'package:todo_app/core/app_toast.dart';
 import 'package:todo_app/core/app_translate.dart';
 import 'package:todo_app/features/tasks/data/models/app_task.dart';
 import 'package:todo_app/features/tasks/view/viewModels/addTask/add_task_view_model.dart';
-import 'package:todo_app/global/app_theme.dart';
-import 'package:todo_app/global/widgets/default_text_field.dart';
-import 'package:todo_app/global/widgets/default_time_picker.dart';
-import 'package:todo_app/global/widgets/item_button.dart';
-import 'package:todo_app/injection.dart';
+import 'package:todo_app/features/common/app_theme.dart';
+import 'package:todo_app/features/common/widgets/default_text_field.dart';
+import 'package:todo_app/features/common/widgets/default_time_picker.dart';
+import 'package:todo_app/features/common/widgets/item_button.dart';
+import 'package:todo_app/core/injection.dart';
 
 class AddTaskDialog extends StatefulWidget {
   final AppTask? task;

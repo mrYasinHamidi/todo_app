@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:gap/gap.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -10,10 +9,10 @@ import 'package:todo_app/features/tasks/view/pages/dialog/add_task_dialog.dart';
 import 'package:todo_app/features/tasks/view/pages/widgets/task_list_item.dart';
 import 'package:todo_app/features/tasks/view/pages/widgets/tasks_place_holder.dart';
 import 'package:todo_app/features/tasks/view/viewModels/tasks/tasks_view_model.dart';
-import 'package:todo_app/global/widgets/default_question_dialog.dart';
-import 'package:todo_app/global/widgets/item_button.dart';
-import 'package:todo_app/injection.dart';
-import 'package:todo_app/viewModels/app/app_view_model.dart';
+import 'package:todo_app/features/common/widgets/default_question_dialog.dart';
+import 'package:todo_app/features/common/widgets/item_button.dart';
+import 'package:todo_app/core/injection.dart';
+import 'package:todo_app/features/common/viewModels/app/app_view_model.dart';
 
 class TasksScreen extends StatefulWidget {
   const TasksScreen({super.key});

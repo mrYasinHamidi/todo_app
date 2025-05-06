@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/features/tasks/data/models/app_task.dart';
 import 'package:todo_app/features/tasks/data/repositories/tasks_repository.dart';
-import 'package:todo_app/global/notification_service.dart';
-import 'package:todo_app/models/app_user.dart';
+import 'package:todo_app/features/common/notification_service.dart';
+import 'package:todo_app/features/common/models/app_user.dart';
 
 part 'tasks_state.dart';
 

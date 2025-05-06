@@ -7,11 +7,11 @@ import 'package:todo_app/features/tasks/data/repositories/tasks_repository.dart'
 import 'package:todo_app/features/tasks/data/services/tasks_local_service.dart';
 import 'package:todo_app/features/tasks/task_mapper.dart';
 import 'package:todo_app/features/tasks/view/viewModels/addTask/add_task_view_model.dart';
-import 'package:todo_app/viewModels/app/app_view_model.dart';
-import 'features/auth/view/viewModels/login/login_view_model.dart';
-import 'features/auth/view/viewModels/signup/signup_view_model.dart';
-import 'features/auth/view/viewModels/splash/splash_view_model.dart';
-import 'features/tasks/view/viewModels/tasks/tasks_view_model.dart';
+import 'package:todo_app/features/common/viewModels/app/app_view_model.dart';
+import '../features/auth/view/viewModels/login/login_view_model.dart';
+import '../features/auth/view/viewModels/signup/signup_view_model.dart';
+import '../features/auth/view/viewModels/splash/splash_view_model.dart';
+import '../features/tasks/view/viewModels/tasks/tasks_view_model.dart';
 
 final getIt = GetIt.instance;
 

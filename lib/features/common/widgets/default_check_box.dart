@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/global/app_theme.dart';
+import 'package:todo_app/features/common/app_theme.dart';
 
 class DefaultCheckBox extends StatelessWidget {
   final bool value;

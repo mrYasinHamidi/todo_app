@@ -4,9 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:todo_app/core/app_translate.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:todo_app/features/auth/view/viewModels/splash/splash_view_model.dart';
-import 'package:todo_app/global/widgets/default_loading.dart';
-import 'package:todo_app/injection.dart';
-import 'package:todo_app/router.dart';
+import 'package:todo_app/features/common/widgets/default_loading.dart';
+import 'package:todo_app/core/injection.dart';
+import 'package:todo_app/core/router.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

@@ -1,5 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:todo_app/models/app_user.dart';
+import 'package:todo_app/features/common/models/app_user.dart';
 
 class AuthLocalService {
   late final Box _box;

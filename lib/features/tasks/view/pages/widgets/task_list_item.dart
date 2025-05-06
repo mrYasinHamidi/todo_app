@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/features/tasks/data/models/app_task.dart';
-import 'package:todo_app/global/app_theme.dart';
-import 'package:todo_app/global/widgets/default_check_box.dart';
-import 'package:todo_app/global/widgets/item_button.dart';
+import 'package:todo_app/features/common/app_theme.dart';
+import 'package:todo_app/features/common/widgets/default_check_box.dart';
 
 class TaskListItem extends StatelessWidget {
   final AppTask task;

@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:todo_app/core/error/error.dart';
 import 'package:todo_app/features/auth/data/repositories/auth_repository.dart';
 import 'package:todo_app/features/auth/view/viewModels/login/login_view_model.dart';
-import 'package:todo_app/models/app_user.dart';
+import 'package:todo_app/features/common/models/app_user.dart';
 
 class MockAuthRepository extends Mock implements AuthRepository {}
 

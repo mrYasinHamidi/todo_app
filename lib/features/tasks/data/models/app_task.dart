@@ -1,7 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:uuid/uuid.dart';
-import 'package:uuid/v4.dart';
 
 part 'app_task.g.dart';
 

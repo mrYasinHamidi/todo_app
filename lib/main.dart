@@ -4,13 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:toastification/toastification.dart';
 import 'package:todo_app/features/tasks/data/models/app_task.dart';
-import 'package:todo_app/injection.dart';
-import 'package:todo_app/models/app_user.dart';
-import 'package:todo_app/router.dart';
-import 'package:todo_app/global/notification_service.dart';
-import 'package:todo_app/viewModels/app/app_view_model.dart';
+import 'package:todo_app/core/injection.dart';
+import 'package:todo_app/features/common/models/app_user.dart';
+import 'package:todo_app/core/router.dart';
+import 'package:todo_app/features/common/notification_service.dart';
+import 'package:todo_app/features/common/viewModels/app/app_view_model.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'firebase_options.dart';
+import 'core/firebase_options.dart';
 
 final localization = FlutterLocalization.instance;
 

@@ -3,7 +3,7 @@ import 'package:todo_app/core/error/error.dart';
 import 'package:todo_app/core/repository/base_repository.dart';
 import 'package:todo_app/features/auth/data/services/auth_local_service.dart';
 import 'package:todo_app/features/auth/data/services/auth_remote_service.dart';
-import 'package:todo_app/models/app_user.dart';
+import 'package:todo_app/features/common/models/app_user.dart';
 
 class AuthRepository extends BaseRepository {
   final AuthLocalService _localService;

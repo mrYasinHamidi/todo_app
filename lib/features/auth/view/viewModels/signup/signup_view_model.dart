@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/features/auth/data/repositories/auth_repository.dart';
-import 'package:todo_app/models/app_user.dart';
+import 'package:todo_app/features/common/models/app_user.dart';
 
 part 'signup_state.dart';
 

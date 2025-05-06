@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/core/app_translate.dart';
 import 'package:todo_app/features/auth/data/repositories/auth_repository.dart';
 import 'package:todo_app/features/tasks/data/repositories/tasks_repository.dart';
-import 'package:todo_app/global/app_theme.dart';
+import 'package:todo_app/features/common/app_theme.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:todo_app/injection.dart';
+import 'package:todo_app/core/injection.dart';
 import 'package:todo_app/main.dart';
 
 part 'app_state.dart';
