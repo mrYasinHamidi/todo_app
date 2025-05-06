@@ -25,6 +25,8 @@ class NotificationService {
   static Future<void> scheduleNotification(AppTask task) =>
       task.dueDate == null
           ? Future.value()
+          : task.dueDate!.isBefore(DateTime.now())
+          ? Future.value()
           : _notificationsPlugin.zonedSchedule(
             task.getNotificationId(),
             'Time to done your Task',

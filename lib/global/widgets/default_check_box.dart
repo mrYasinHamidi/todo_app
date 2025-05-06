@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/global/app_theme.dart';
 
 class DefaultCheckBox extends StatelessWidget {
   final bool value;
@@ -11,8 +12,8 @@ class DefaultCheckBox extends StatelessWidget {
     return Checkbox(
       value: value,
       onChanged: onChanged,
-      activeColor: value == true ? Colors.black : Colors.white,
-      side: BorderSide(width: 2, color: Colors.black12),
+      activeColor: AppTheme.get().themeData.colorScheme.onSurface,
+      side: BorderSide(width: 2, color: AppTheme.get().themeData.colorScheme.onSurface.withAlpha(100)),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
     );
   }

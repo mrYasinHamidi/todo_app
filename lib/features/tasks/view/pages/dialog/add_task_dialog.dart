@@ -7,6 +7,7 @@ import 'package:todo_app/core/app_toast.dart';
 import 'package:todo_app/core/app_translate.dart';
 import 'package:todo_app/features/tasks/data/models/app_task.dart';
 import 'package:todo_app/features/tasks/view/viewModels/addTask/add_task_view_model.dart';
+import 'package:todo_app/global/app_theme.dart';
 import 'package:todo_app/global/widgets/default_text_field.dart';
 import 'package:todo_app/global/widgets/default_time_picker.dart';
 import 'package:todo_app/global/widgets/item_button.dart';
@@ -123,7 +124,9 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                     MaxGap(8),
                     Text(
                       AppTranslate.addTaskBottomMessage.getString(context),
-                      style: TextStyle(color: Colors.black54),
+                      style: TextStyle(
+                        color: AppTheme.get().themeData.colorScheme.onSurface.withAlpha(100),
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ],

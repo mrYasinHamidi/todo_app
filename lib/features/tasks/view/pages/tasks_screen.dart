@@ -49,7 +49,39 @@ class _TasksScreenState extends State<TasksScreen> {
               return Text(viewModel.user?.email ?? AppTranslate.task.getString(context));
             },
           ),
-          actions: [IconButton(onPressed: _logout, icon: Icon(Icons.login_outlined))],
+          actions: [
+            PopupMenuButton(
+              padding: EdgeInsets.zero,
+              itemBuilder:
+                  (context) => [
+                    PopupMenuItem(
+                      onTap: _logout,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [Text(AppTranslate.logout.getString(context)), const Gap(16), Icon(Icons.logout)],
+                      ),
+                    ),
+                    PopupMenuItem(
+                      onTap: _changeTheme,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(AppTranslate.darkModel.getString(context)),
+                          const Gap(16),
+                          Icon(Icons.dark_mode),
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem(
+                      onTap: _changeLang,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [Text(AppTranslate.persian.getString(context)), const Gap(16), Icon(Icons.translate)],
+                      ),
+                    ),
+                  ],
+            ),
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(16),
@@ -206,5 +238,13 @@ class _TasksScreenState extends State<TasksScreen> {
       title: AppTranslate.logout.getString(context),
       desc: AppTranslate.logoutMessage.getString(context),
     ).open(context).then((value) => value == true ? getIt<AppViewModel>().logout() : null);
+  }
+
+  void _changeTheme() {
+    getIt<AppViewModel>().changeTheme();
+  }
+
+  void _changeLang() {
+    getIt<AppViewModel>().changeLang();
   }
 }

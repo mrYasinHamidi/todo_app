@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/features/tasks/data/models/app_task.dart';
+import 'package:todo_app/global/app_theme.dart';
 import 'package:todo_app/global/widgets/default_check_box.dart';
 import 'package:todo_app/global/widgets/item_button.dart';
 
@@ -28,14 +29,14 @@ class TaskListItem extends StatelessWidget {
         child:
             task.isToday
                 ? DefaultCheckBox(value: task.isCompleted, onChanged: (value) => onCompleteTap())
-                : Icon(Icons.circle, color: Colors.black, size: 12),
+                : Icon(Icons.circle, size: 12, color: AppTheme.get().themeData.colorScheme.onSurface),
       ),
       title: Text(
         task.description,
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
-          color: task.isCompleted ? Colors.black38 : Colors.black87,
+          color: AppTheme.get().themeData.colorScheme.onSurface.withAlpha(task.isCompleted ? 100 : 250),
           fontWeight: FontWeight.w600,
           decoration: task.isCompleted ? TextDecoration.lineThrough : null,
         ),
@@ -66,50 +67,10 @@ class TaskListItem extends StatelessWidget {
               : Text(
                 '${task.dueDate!.hour} : ${task.dueDate!.minute}',
                 style: TextStyle(
-                  color: Colors.black54,
+                  color: AppTheme.get().themeData.colorScheme.onSurface.withAlpha(task.isCompleted ? 100 : 150),
                   decoration: task.isCompleted ? TextDecoration.lineThrough : null,
                 ),
               ),
-    );
-    return ItemButton(
-      onTap: onTap,
-      color: Colors.transparent,
-      borderRadius: BorderRadius.circular(8),
-      child: Row(
-        children: [
-          SizedBox(
-            width: 50,
-            height: 50,
-            child:
-                task.isToday
-                    ? Checkbox(value: task.isCompleted, onChanged: (value) => onCompleteTap())
-                    : Icon(Icons.circle),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  task.description,
-                  style: TextStyle(
-                    color: task.isCompleted ? Colors.black38 : Colors.black87,
-                    fontWeight: FontWeight.w600,
-                    decoration: task.isCompleted ? TextDecoration.lineThrough : null,
-                  ),
-                ),
-                if (task.dueDate != null)
-                  Text(
-                    '${task.dueDate!.hour} : ${task.dueDate!.minute}',
-                    style: TextStyle(
-                      color: Colors.black54,
-                      decoration: task.isCompleted ? TextDecoration.lineThrough : null,
-                    ),
-                  ),
-              ],
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

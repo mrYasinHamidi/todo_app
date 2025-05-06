@@ -8,15 +8,21 @@ sealed class AppTheme {
   abstract final Color primaryColor;
   final String? fontFamily = null;
 
-  late final ThemeData themeData = ThemeData(primaryColor: primaryColor, fontFamily: fontFamily);
+  abstract final ThemeData themeData;
 }
 
 class DarkTheme extends AppTheme {
   @override
   Color get primaryColor => Colors.red;
+
+  @override
+  ThemeData get themeData => ThemeData.light().copyWith(primaryColor: primaryColor);
 }
 
 class LightTheme extends AppTheme {
   @override
   Color get primaryColor => Colors.blue;
+
+  @override
+  ThemeData get themeData => ThemeData.dark().copyWith(primaryColor: primaryColor);
 }
