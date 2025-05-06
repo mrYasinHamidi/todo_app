@@ -17,8 +17,6 @@ class TasksListState extends TasksState {
 
 class TasksEmptyState extends TasksState {}
 
-class AllTasksDoneState extends TasksState {}
-
 class TasksErrorState extends TasksState {
   final String errorMessage;
 

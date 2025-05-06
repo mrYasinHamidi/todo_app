@@ -45,7 +45,7 @@ class _TasksScreenState extends State<TasksScreen> {
           padding: const EdgeInsets.all(16),
           child: BlocBuilder(
             bloc: viewModel,
-            buildWhen: (_, state) => state is TasksListState || state is TasksEmptyState || state is AllTasksDoneState,
+            buildWhen: (_, state) => state is TasksListState || state is TasksEmptyState,
             builder: (_, state) {
               return switch (state) {
                 TasksListState() => ListView(
@@ -53,9 +53,22 @@ class _TasksScreenState extends State<TasksScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          AppTranslate.today.getString(context),
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 31),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              AppTranslate.today.getString(context),
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 31),
+                            ),
+                            if (viewModel.todayTasks.isNotEmpty)
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                child: Text(
+                                  ' ( ${viewModel.todayTasks.length} ${AppTranslate.task.getString(context)} )',
+                                  style: TextStyle(fontWeight: FontWeight.normal, fontSize: 10),
+                                ),
+                              ),
+                          ],
                         ),
                         BlocBuilder(
                           bloc: viewModel,
@@ -63,6 +76,7 @@ class _TasksScreenState extends State<TasksScreen> {
                           builder: (_, state) {
                             return ItemButton(
                               onTap: () => viewModel.toggleCompletedTasksVisibility(),
+                              color: Colors.transparent,
                               child: Text(
                                 viewModel.showCompleted
                                     ? AppTranslate.hideCompleted.getString(context)
@@ -93,9 +107,22 @@ class _TasksScreenState extends State<TasksScreen> {
                       },
                     ),
                     const Gap(16),
-                    Text(
-                      AppTranslate.tomorrow.getString(context),
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 31),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          AppTranslate.tomorrow.getString(context),
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 31),
+                        ),
+                        if (viewModel.tomorrowTasks.isNotEmpty)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: Text(
+                              ' ( ${viewModel.tomorrowTasks.length} ${AppTranslate.task.getString(context)} )',
+                              style: TextStyle(fontWeight: FontWeight.normal, fontSize: 10),
+                            ),
+                          ),
+                      ],
                     ),
                     ListView.builder(
                       itemCount: viewModel.tomorrowTasks.length,
@@ -111,7 +138,6 @@ class _TasksScreenState extends State<TasksScreen> {
                   ],
                 ),
                 TasksEmptyState() => Text(AppTranslate.task.getString(context)),
-                AllTasksDoneState() => Text(AppTranslate.showCompleted.getString(context)),
                 _ => SizedBox(),
               };
             },

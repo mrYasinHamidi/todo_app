@@ -27,14 +27,11 @@ class TasksViewModel extends Cubit<TasksState> {
           emit(TasksListState(today: todayTasks, tomorrow: tomorrowTasks));
         } else {
           final notCompleted = tasks.where((element) => !element.isCompleted).toList();
-          if (notCompleted.isEmpty) {
-            emit(AllTasksDoneState());
-          } else {
-            final separatedByDay = notCompleted.separateTasks();
-            todayTasks = separatedByDay.$1;
-            tomorrowTasks = separatedByDay.$2;
-            emit(TasksListState(today: todayTasks, tomorrow: tomorrowTasks));
-          }
+
+          final separatedByDay = notCompleted.separateTasks();
+          todayTasks = separatedByDay.$1;
+          tomorrowTasks = separatedByDay.$2;
+          emit(TasksListState(today: todayTasks, tomorrow: tomorrowTasks));
         }
       }
     });
