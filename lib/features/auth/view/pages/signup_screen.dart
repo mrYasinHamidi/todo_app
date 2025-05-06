@@ -118,14 +118,13 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void _listener(BuildContext context, SignupState state) {
-
     switch (state) {
       case SignupFailState():
         AppToast.show(state.errorMessage.getString(context), isError: true);
         break;
       case SignupSuccessState():
         AppToast.show(AppTranslate.yourWelcome.getString(context));
-        Navigator.pushReplacementNamed(context, AppRouter.tasks);
+        context.push(AppRouter.tasks);
         break;
       default:
         break;
