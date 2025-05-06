@@ -14,7 +14,8 @@ class AppViewModel extends Cubit<AppState> {
   AppViewModel() : super(AppInitialState());
   AppTheme appTheme = LightTheme();
 
-  TextDirection textDirection = TextDirection.ltr;
+  TextDirection textDirection =
+      localization.currentLocale?.languageCode == 'fa' ? TextDirection.rtl : TextDirection.ltr;
 
   void initializeTranslation() {
     localization.init(

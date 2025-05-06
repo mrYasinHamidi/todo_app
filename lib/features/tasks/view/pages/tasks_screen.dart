@@ -76,7 +76,11 @@ class _TasksScreenState extends State<TasksScreen> {
                       onTap: _changeLang,
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
-                        children: [Text(AppTranslate.persian.getString(context)), const Gap(16), Icon(Icons.translate)],
+                        children: [
+                          Text(AppTranslate.changeLang.getString(context)),
+                          const Gap(16),
+                          Icon(Icons.translate),
+                        ],
                       ),
                     ),
                   ],
