@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:uuid/uuid.dart';
+import 'package:uuid/v4.dart';
 
 part 'app_task.g.dart';
 
@@ -28,11 +30,11 @@ class AppTask extends HiveObject with EquatableMixin {
     this.dueDate,
   });
 
-  factory AppTask.create({required String description, required bool isToday, DateTime? finishTime}) {
+  factory AppTask.create({required String description, required bool isToday, DateTime? dueDate}) {
     return AppTask(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       description: description,
-      dueDate: finishTime,
+      dueDate: dueDate,
       isToday: isToday,
       isCompleted: false,
     );
@@ -54,6 +56,12 @@ class AppTask extends HiveObject with EquatableMixin {
       isToday: isToday ?? this.isToday,
       isCompleted: isCompleted ?? this.isCompleted,
       dueDate: dueDate == null ? this.dueDate : dueDate(),
+    );
+  }
+
+  int getNotificationId() {
+    return int.parse(
+      id.replaceRange(0, (id.length / 2).ceil(), ''),
     );
   }
 }

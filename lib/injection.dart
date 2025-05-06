@@ -29,8 +29,8 @@ class Injection {
     getIt.registerFactory(() => LoginViewModel(authRepository: getIt()));
     getIt.registerFactory(() => SignupViewModel(authRepository: getIt()));
     getIt.registerFactory(() => TasksViewModel(repository: getIt()));
+    getIt.registerFactory(() => AddTaskViewModel(repository: getIt()));
     getIt.registerSingleton(AppViewModel());
-    getIt.registerSingleton(AddTaskViewModel(repository: getIt()));
 
     await getIt<AuthLocalService>().ensureInitialize();
     await getIt<TasksLocalService>().ensureInitialize();

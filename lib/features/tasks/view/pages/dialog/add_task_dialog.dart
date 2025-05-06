@@ -23,10 +23,9 @@ class AddTaskDialog extends StatefulWidget {
 
 class _AddTaskDialogState extends State<AddTaskDialog> {
   late final timeController = DefaultTimePickerController(
-    date:
-        widget.task?.dueDate == null
-            ? null
-            : TimeOfDay(hour: widget.task!.dueDate!.hour, minute: widget.task!.dueDate!.hour),
+    date: widget.task?.dueDate == null
+        ? null
+        : TimeOfDay(hour: widget.task!.dueDate!.hour, minute: widget.task!.dueDate!.hour),
   );
   late final descriptionController = TextEditingController(text: widget.task?.description);
   final viewModel = getIt<AddTaskViewModel>();
@@ -74,15 +73,16 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      widget.task==null?AppTranslate.addTask.getString(context):AppTranslate.editTask.getString(context),
+                      widget.task == null
+                          ? AppTranslate.addTask.getString(context)
+                          : AppTranslate.editTask.getString(context),
                       style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.start,
                     ),
                     DefaultTextField(
                       controller: descriptionController,
-                      validator:
-                          (value) =>
-                              value?.isNotEmpty == true ? null : AppTranslate.taskDescriptionError.getString(context),
+                      validator: (value) =>
+                          value?.isNotEmpty == true ? null : AppTranslate.taskDescriptionError.getString(context),
                       counterText: ' ',
                       label: AppTranslate.taskDescription.getString(context),
                     ),
@@ -130,17 +130,28 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
 
   void _submit() {
     if (formKey.currentState?.validate() == true) {
-      viewModel.addTask(descriptionController.text, timeController.value, appTask: widget.task);
+      if (widget.task != null) {
+        viewModel.editTask(
+          description: descriptionController.text,
+          timeOfDay: timeController.value,
+          appTask: widget.task!,
+        );
+      } else {
+        viewModel.addTask(
+          description: descriptionController.text,
+          timeOfDay: timeController.value,
+        );
+      }
     }
   }
 
   void _listener(BuildContext context, AddTaskState state) {
     if (state is AddTaskFail) {
       AppToast.show(state.errorMessage.getString(context), isError: true);
-    }
-    if (state is AddTaskSuccess) {
-      context.pop(state.task);
+    } else if (state is AddTaskSuccess) {
+      viewModel.scheduleNotification(state.task);
       AppToast.show(AppTranslate.successMessage.getString(context));
+      context.pop(state.task);
     }
   }
 }

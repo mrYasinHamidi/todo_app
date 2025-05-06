@@ -19,6 +19,8 @@ class NotificationService {
     tz.initializeTimeZones();
   }
 
+  static Future<void> cancel(int id) => _notificationsPlugin.cancel(id);
+
   static Future<void> scheduleNotification({
     required int id,
     required String title,
@@ -27,27 +29,24 @@ class NotificationService {
   }) async {
     await _notificationsPlugin
         .zonedSchedule(
-          id,
-          title,
-          body,
-          tz.TZDateTime.from(scheduledDate, tz.local),
-          const NotificationDetails(
-            android: AndroidNotificationDetails(
-              'todo_channel',
-              'Task Reminders',
-              importance: Importance.max,
-              priority: Priority.high,
-            ),
-          ),
-          // androidAllowWhileIdle: true,
-          androidScheduleMode: AndroidScheduleMode.inexact,
-          // uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
-        )
+      id,
+      title,
+      body,
+      tz.TZDateTime.from(scheduledDate, tz.local),
+      const NotificationDetails(
+        android: AndroidNotificationDetails(
+          'todo_channel',
+          'Task Reminders',
+          importance: Importance.max,
+          priority: Priority.high,
+        ),
+      ),
+      androidScheduleMode: AndroidScheduleMode.alarmClock,
+    )
         .then((value) {
-          print('value');
-        })
-        .onError((error, stackTrace) {
-          print(error);
-        });
+      print('value');
+    }).onError((error, stackTrace) {
+      print(error);
+    });
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:gap/gap.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:todo_app/core/app_translate.dart';
 import 'package:todo_app/features/tasks/data/models/app_task.dart';
 import 'package:todo_app/features/tasks/view/pages/dialog/add_task_dialog.dart';
@@ -23,6 +24,7 @@ class _TasksScreenState extends State<TasksScreen> {
   @override
   void initState() {
     viewModel.fetchTasks();
+    _requestPermissions();
     super.initState();
   }
 
@@ -115,5 +117,9 @@ class _TasksScreenState extends State<TasksScreen> {
   void _addTask({AppTask? task}) async {
     await showModalBottomSheet(context: context, builder: (context) => AddTaskDialog(task: task));
     viewModel.fetchTasks();
+  }
+
+  void _requestPermissions() {
+    Permission.scheduleExactAlarm.request();
   }
 }
