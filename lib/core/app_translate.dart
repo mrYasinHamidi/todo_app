@@ -34,6 +34,7 @@ mixin AppTranslate {
   static const String deleteTaskMessage = 'deleteTaskMessage';
   static const String logout = 'logout';
   static const String logoutMessage = 'logoutMessage';
+  static const String taskPlaceHolderMessage = 'taskPlaceHolderMessage';
 
   static const Map<String, dynamic> EN = {
     yes: 'Yes',
@@ -71,6 +72,7 @@ mixin AppTranslate {
     deleteTaskMessage: 'Are you sure that you want to delete this Task?',
     logout: 'Logout',
     logoutMessage: 'Are you sure that you want to logout from application?',
+    taskPlaceHolderMessage:'There is no any Task \n For add your tasks and make your life easier \n Tap on Plus button',
   };
   static const Map<String, dynamic> FA = {
     no: 'No',
@@ -108,5 +110,7 @@ mixin AppTranslate {
     deleteTaskMessage: 'Are you sure that you want to delete this Task?',
     logout: 'Logout',
     logoutMessage: 'Are you sure that you want to logout from application?',
+    taskPlaceHolderMessage:'There is no any Task \n For add your tasks and make your life easier \n Tap on Plus button',
+
   };
 }

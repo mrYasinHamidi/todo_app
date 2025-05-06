@@ -8,6 +8,7 @@ import 'package:todo_app/core/app_translate.dart';
 import 'package:todo_app/features/tasks/data/models/app_task.dart';
 import 'package:todo_app/features/tasks/view/pages/dialog/add_task_dialog.dart';
 import 'package:todo_app/features/tasks/view/pages/widgets/task_list_item.dart';
+import 'package:todo_app/features/tasks/view/pages/widgets/tasks_place_holder.dart';
 import 'package:todo_app/features/tasks/view/viewModels/tasks/tasks_view_model.dart';
 import 'package:todo_app/global/widgets/default_question_dialog.dart';
 import 'package:todo_app/global/widgets/item_button.dart';
@@ -148,7 +149,7 @@ class _TasksScreenState extends State<TasksScreen> {
                     ),
                   ],
                 ),
-                TasksEmptyState() => Text(AppTranslate.task.getString(context)),
+                TasksEmptyState() => const TasksPlaceHolder(),
                 _ => SizedBox(),
               };
             },
