@@ -25,6 +25,8 @@ class TaskListItem extends StatelessWidget {
       ),
       title: Text(
         task.description,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
           color: task.isCompleted ? Colors.black38 : Colors.black87,
           fontWeight: FontWeight.w600,

@@ -23,9 +23,10 @@ class AddTaskDialog extends StatefulWidget {
 
 class _AddTaskDialogState extends State<AddTaskDialog> {
   late final timeController = DefaultTimePickerController(
-    date: widget.task?.dueDate == null
-        ? null
-        : TimeOfDay(hour: widget.task!.dueDate!.hour, minute: widget.task!.dueDate!.hour),
+    date:
+        widget.task?.dueDate == null
+            ? null
+            : TimeOfDay(hour: widget.task!.dueDate!.hour, minute: widget.task!.dueDate!.hour),
   );
   late final descriptionController = TextEditingController(text: widget.task?.description);
   final viewModel = getIt<AddTaskViewModel>();
@@ -42,10 +43,12 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final bottomInsets = MediaQuery.of(context).viewInsets.bottom;
     return BlocListener(
       bloc: viewModel,
       listener: _listener,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
@@ -64,43 +67,48 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
             ),
           ),
           const Divider(),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      widget.task == null
-                          ? AppTranslate.addTask.getString(context)
-                          : AppTranslate.editTask.getString(context),
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.start,
-                    ),
-                    DefaultTextField(
-                      controller: descriptionController,
-                      validator: (value) =>
-                          value?.isNotEmpty == true ? null : AppTranslate.taskDescriptionError.getString(context),
-                      counterText: ' ',
-                      label: AppTranslate.taskDescription.getString(context),
-                    ),
-                    DefaultTimePicker(controller: timeController, label: AppTranslate.dueDateHint.getString(context)),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(AppTranslate.today.getString(context), style: TextStyle(fontSize: 16)),
-                        BlocBuilder(
-                          bloc: viewModel,
-                          buildWhen: (_, state) => state is IsTodayState,
-                          builder: (_, state) {
-                            return Switch(value: viewModel.isToday, onChanged: (value) => viewModel.changeIsToday());
-                          },
-                        ),
-                      ],
-                    ),
-                    Spacer(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            child: Form(
+              key: formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    widget.task == null
+                        ? AppTranslate.addTask.getString(context)
+                        : AppTranslate.editTask.getString(context),
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.start,
+                  ),
+                  DefaultTextField(
+                    controller: descriptionController,
+                    minLines: 1,
+                    maxLines: 4,
+                    validator:
+                        (value) =>
+                            value?.isNotEmpty == true ? null : AppTranslate.taskDescriptionError.getString(context),
+                    counterText: ' ',
+                    label: AppTranslate.taskDescription.getString(context),
+                  ),
+                  DefaultTimePicker(controller: timeController, label: AppTranslate.dueDateHint.getString(context)),
+                  MaxGap(16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(AppTranslate.today.getString(context), style: TextStyle(fontSize: 16)),
+                      BlocBuilder(
+                        bloc: viewModel,
+                        buildWhen: (_, state) => state is IsTodayState,
+                        builder: (_, state) {
+                          return Switch(value: viewModel.isToday, onChanged: (value) => viewModel.changeIsToday());
+                        },
+                      ),
+                    ],
+                  ),
+                  if (bottomInsets == 0) ...[
+                    MaxGap(32),
                     ItemButton(
                       onTap: _submit,
                       color: Colors.black,
@@ -112,14 +120,15 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                         ),
                       ),
                     ),
-                    Gap(8),
+                    MaxGap(8),
                     Text(
                       AppTranslate.addTaskBottomMessage.getString(context),
                       style: TextStyle(color: Colors.black54),
                       textAlign: TextAlign.center,
                     ),
                   ],
-                ),
+                  MaxGap(bottomInsets),
+                ],
               ),
             ),
           ),
@@ -137,10 +146,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
           appTask: widget.task!,
         );
       } else {
-        viewModel.addTask(
-          description: descriptionController.text,
-          timeOfDay: timeController.value,
-        );
+        viewModel.addTask(description: descriptionController.text, timeOfDay: timeController.value);
       }
     }
   }

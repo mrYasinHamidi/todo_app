@@ -17,6 +17,8 @@ class DefaultTextField extends StatelessWidget {
   final InputBorder? inputBorder;
   final bool? isCollapsed;
   final bool? isDense;
+  final int? minLines;
+  final int? maxLines;
 
   const DefaultTextField({
     super.key,
@@ -35,6 +37,8 @@ class DefaultTextField extends StatelessWidget {
     this.inputBorder,
     this.isDense,
     this.isCollapsed,
+    this.minLines,
+    this.maxLines,
   });
 
   @override
@@ -54,11 +58,13 @@ class DefaultTextField extends StatelessWidget {
         isCollapsed: isCollapsed,
       ),
       controller: controller,
+      minLines: minLines,
+      maxLines: maxLines,
       enabled: enable,
       textDirection: textDirection,
       inputFormatters: <TextInputFormatter>[
         if (justInteger) FilteringTextInputFormatter.digitsOnly,
-        if (justFloat) FilteringTextInputFormatter.allow(RegExp(r'(^\d*\.?\d*)'))
+        if (justFloat) FilteringTextInputFormatter.allow(RegExp(r'(^\d*\.?\d*)')),
       ],
       readOnly: readOnly,
       // keyboardType: inputType,

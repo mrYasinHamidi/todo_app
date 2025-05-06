@@ -148,7 +148,7 @@ class _TasksScreenState extends State<TasksScreen> {
   }
 
   void _addTask({AppTask? task}) async {
-    await showModalBottomSheet(context: context, builder: (context) => AddTaskDialog(task: task));
+    await showModalBottomSheet(context: context,enableDrag: true,isScrollControlled: true, builder: (context) => AddTaskDialog(task: task));
     viewModel.fetchTasks();
   }
 
