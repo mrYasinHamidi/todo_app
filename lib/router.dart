@@ -8,12 +8,16 @@ import 'package:todo_app/features/tasks/view/pages/tasks_screen.dart';
 class AppRouter {
   static final GoRouter router = GoRouter(
     routes: <RouteBase>[
-      GoRoute(path: '/', builder: (BuildContext context, GoRouterState state) => SplashScreen()),
+      GoRoute(path: '/',name: '/', builder: (BuildContext context, GoRouterState state) => SplashScreen()),
       GoRoute(path: login, name: login, builder: (context, state) => LoginScreen()),
       GoRoute(path: signup, name: signup, builder: (context, state) => SignupScreen()),
       GoRoute(path: tasks, name: tasks, builder: (context, state) => TasksScreen()),
     ],
   );
+
+  static void restart() {
+    router.goNamed('/');
+  }
 
   static final String login = '/login';
   static final String signup = '/signup';

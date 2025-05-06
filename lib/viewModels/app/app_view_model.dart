@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/core/app_translate.dart';
+import 'package:todo_app/features/auth/data/repositories/auth_repository.dart';
+import 'package:todo_app/features/tasks/data/repositories/tasks_repository.dart';
 import 'package:todo_app/global/app_theme.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:todo_app/injection.dart';
 import 'package:todo_app/main.dart';
 
 part 'app_state.dart';
@@ -37,5 +40,11 @@ class AppViewModel extends Cubit<AppState> {
       LightTheme() => DarkTheme(),
     };
     emit(AppThemeState());
+  }
+
+  void logout() async {
+    await getIt<AuthRepository>().logout();
+    await getIt<TaskRepository>().clearStorage();
+    emit(LogoutState());
   }
 }

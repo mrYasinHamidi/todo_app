@@ -34,4 +34,6 @@ class TaskRepository extends BaseRepository {
   }
 
   Either<Failure, AppUser?> getUser() => _mapper.getUser();
+
+  Future<Either<Failure, void>> clearStorage() => perform(() => _localService.clear());
 }

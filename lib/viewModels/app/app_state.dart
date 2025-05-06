@@ -5,4 +5,7 @@ sealed class AppState {}
 class AppInitialState extends AppState {}
 
 class AppThemeState extends AppState {}
+
 class AppLangState extends AppState {}
+
+class LogoutState extends AppState {}

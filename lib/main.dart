@@ -44,8 +44,15 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppViewModel, AppState>(
+    return BlocConsumer<AppViewModel, AppState>(
       bloc: appViewModel,
+      listener: (context, state) {
+        if (state is LogoutState) {
+          AppRouter.restart();
+        }
+      },
+      listenWhen: (_, state) => state is LogoutState,
+      buildWhen: (_, state) => state is! LogoutState,
       builder: (context, state) {
         return ToastificationWrapper(
           child: MaterialApp.router(

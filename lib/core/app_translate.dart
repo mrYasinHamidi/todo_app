@@ -32,6 +32,8 @@ mixin AppTranslate {
   static const String successMessage = 'successMessage';
   static const String deleteTask = 'deleteTask';
   static const String deleteTaskMessage = 'deleteTaskMessage';
+  static const String logout = 'logout';
+  static const String logoutMessage = 'logoutMessage';
 
   static const Map<String, dynamic> EN = {
     yes: 'Yes',
@@ -67,6 +69,8 @@ mixin AppTranslate {
     successMessage: 'Operation successfully done.',
     deleteTask: 'Delete Task',
     deleteTaskMessage: 'Are you sure that you want to delete this Task?',
+    logout: 'Logout',
+    logoutMessage: 'Are you sure that you want to logout from application?',
   };
   static const Map<String, dynamic> FA = {
     no: 'No',
@@ -102,5 +106,7 @@ mixin AppTranslate {
     task: 'Task',
     deleteTask: 'Delete Task',
     deleteTaskMessage: 'Are you sure that you want to delete this Task?',
+    logout: 'Logout',
+    logoutMessage: 'Are you sure that you want to logout from application?',
   };
 }
