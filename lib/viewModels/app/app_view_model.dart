@@ -34,7 +34,6 @@ class AppViewModel extends Cubit<AppState> {
   }
 
   void changeLang() {
-    print(localization.currentLocale);
     if (localization.currentLocale?.languageCode == 'fa') {
       textDirection = TextDirection.ltr;
       localization.translate('en');

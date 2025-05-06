@@ -5,7 +5,6 @@ import 'package:todo_app/viewModels/app/app_view_model.dart';
 sealed class AppTheme {
   static AppTheme get() => getIt<AppViewModel>().appTheme;
 
-  abstract final Color primaryColor;
   final String? fontFamily = null;
 
   abstract final ThemeData themeData;
@@ -13,16 +12,10 @@ sealed class AppTheme {
 
 class DarkTheme extends AppTheme {
   @override
-  Color get primaryColor => Colors.red;
-
-  @override
-  ThemeData get themeData => ThemeData.light().copyWith(primaryColor: primaryColor);
+  ThemeData get themeData => ThemeData.dark();
 }
 
 class LightTheme extends AppTheme {
   @override
-  Color get primaryColor => Colors.blue;
-
-  @override
-  ThemeData get themeData => ThemeData.dark().copyWith(primaryColor: primaryColor);
+  ThemeData get themeData => ThemeData.light();
 }

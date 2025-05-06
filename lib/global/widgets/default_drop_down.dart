@@ -114,7 +114,7 @@ class _DefaultDropDownState<T> extends State<DefaultDropDown<T>> {
         ),
         dropdownStyleData: DropdownStyleData(
           decoration: BoxDecoration(
-            border: Border.fromBorderSide(widget.dropdownSide ?? BorderSide(color: AppTheme.get().primaryColor)),
+            border: Border.fromBorderSide(widget.dropdownSide ?? BorderSide(color: AppTheme.get().themeData.primaryColor)),
             borderRadius: widget.borderRadius,
             boxShadow: widget.shadow,
             color: widget.dropdownColor,

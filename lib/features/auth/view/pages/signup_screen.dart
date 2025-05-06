@@ -83,7 +83,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         loading = true;
                       }
                       return ItemButton(
-                        side: BorderSide(color: AppTheme.get().primaryColor),
+                        side: BorderSide(color: AppTheme.get().themeData.primaryColor),
                         onTap: () => loading ? null : _submit(),
                         child:
                             loading

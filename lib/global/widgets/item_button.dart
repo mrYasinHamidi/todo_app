@@ -50,8 +50,8 @@ class ItemButton extends StatelessWidget {
       onTapDown: onTapDown,
       splashFactory: splashFactory,
       borderRadius: shape == BoxShape.circle ? BorderRadius.circular(100) : radius,
-      splashColor: (splashColor ?? AppTheme.get().primaryColor).withAlpha(32),
-      highlightColor: (splashColor ?? AppTheme.get().primaryColor).withAlpha(24),
+      splashColor: (splashColor ?? AppTheme.get().themeData.primaryColor).withAlpha(32),
+      highlightColor: (splashColor ?? AppTheme.get().themeData.primaryColor).withAlpha(24),
       child: Padding(padding: padding, child: child),
     );
 

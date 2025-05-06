@@ -28,7 +28,7 @@ class DefaultQuestionDialog extends StatelessWidget {
           constraints: const BoxConstraints(minWidth: 70),
           child: ItemButton(
             padding: const EdgeInsets.symmetric(vertical: 8),
-            side: BorderSide(color: AppTheme.get().primaryColor),
+            side: BorderSide(color: AppTheme.get().themeData.primaryColor),
             onTap: () => context.pop(true),
             child: Text(yesTitle ?? AppTranslate.yes.getString(context), textAlign: TextAlign.center),
           ),
@@ -37,7 +37,7 @@ class DefaultQuestionDialog extends StatelessWidget {
           constraints: const BoxConstraints(minWidth: 70),
           child: ItemButton(
             padding: const EdgeInsets.symmetric(vertical: 8),
-            color: AppTheme.get().primaryColor,
+            color: AppTheme.get().themeData.primaryColor,
             onTap: () => context.pop(false),
             splashColor: Colors.white,
             child: Text(
