@@ -102,7 +102,7 @@ mixin AppTranslate {
     passwordConfirm: 'Confirm password',
     passwordNotMatch: 'Password not match.',
     yourWelcome: 'Your Welcome',
-    today: 'Today',
+    today: 'امروز',
     dueDateHint: 'Due Date (Optional)',
     tomorrow: 'Tomorrow',
     addTaskBottomMessage: 'If you disable today, the task will be considered as tomorrow',

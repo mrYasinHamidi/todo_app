@@ -60,6 +60,7 @@ class _MyAppState extends State<MyApp> {
             theme: appViewModel.appTheme.themeData,
             supportedLocales: localization.supportedLocales,
             localizationsDelegates: localization.localizationsDelegates,
+            builder: (context, child) => Directionality(textDirection: appViewModel.textDirection, child: child!),
           ),
         );
       },
